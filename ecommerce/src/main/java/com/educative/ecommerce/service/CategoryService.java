@@ -1,7 +1,7 @@
 package com.educative.ecommerce.service;
 
 import com.educative.ecommerce.model.Category;
-import com.educative.ecommerce.repository.Categoryrepository;
+import com.educative.ecommerce.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class CategoryService {
 
     @Autowired
-    private Categoryrepository categoryrepository;
+    private CategoryRepository categoryrepository;
 
     public List<Category> listCategories() {
         return categoryrepository.findAll();

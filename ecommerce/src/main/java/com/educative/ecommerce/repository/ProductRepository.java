@@ -1,14 +1,12 @@
 package com.educative.ecommerce.repository;
 
 import com.educative.ecommerce.model.Category;
+import com.educative.ecommerce.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface Categoryrepository extends JpaRepository<Category, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    Category findByCategoryName(String categoryName);
 
 }

@@ -62,13 +62,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.validation</groupId>
+			<groupId>Jakarta.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.transaction</groupId>
+			<groupId>Jakarta.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
@@ -81,7 +81,7 @@
 
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
+			<artifactId>Jakarta.persistence</artifactId>
 			<version>2.2.1</version>
 		</dependency>
 
