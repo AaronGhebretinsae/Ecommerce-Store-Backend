@@ -1,6 +1,5 @@
 package com.educative.ecommerce.repository;
 
-import com.educative.ecommerce.model.Category;
 import com.educative.ecommerce.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
