@@ -4,6 +4,8 @@ package com.educative.ecommerce.controllers;
 import com.educative.ecommerce.common.ApiResponse;
 import com.educative.ecommerce.dto.product.ProductDto;
 import com.educative.ecommerce.model.Category;
+import com.educative.ecommerce.model.Product;
+import com.educative.ecommerce.repository.ProductRepository;
 import com.educative.ecommerce.service.CategoryService;
 import com.educative.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +32,14 @@ public class ProductController {
     CategoryService categoryService;
 
 
+    //To Do: send a different http response if the product is already created.
+
+    //add a new product to the database
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDto productDto) {
         Optional<Category> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
         if (!optionalCategory.isPresent()) {
-            return new ResponseEntity<>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new ApiResponse(false, "category is does not exist"), HttpStatus.BAD_REQUEST);
         }
         Category category = optionalCategory.get();
         productService.addProduct(productDto, category);
@@ -42,7 +47,7 @@ public class ProductController {
     }
 
     // list all the products
-    @GetMapping("/")
+    @GetMapping("/List")
     public ResponseEntity<List<ProductDto>> getProducts() {
         List<ProductDto> productDtos = productService.listProducts();
         return new ResponseEntity<>(productDtos, HttpStatus.OK);
@@ -52,12 +57,15 @@ public class ProductController {
     @PostMapping("/update/{productID}")
     public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Integer productID,
                                                      @RequestBody @Valid ProductDto productDto) {
-        Optional<Category> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
-        if (!optionalCategory.isPresent()) {
+        Optional<Product> optionalProduct = productService.readProduct(productID);
+        if (!optionalProduct.isPresent()) {
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
         }
+        Optional<Category> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
         Category category = optionalCategory.get();
         productService.updateProduct(productID, productDto, category);
         return new ResponseEntity<>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
     }
+
+    //TO DO: add delete function.
 }
