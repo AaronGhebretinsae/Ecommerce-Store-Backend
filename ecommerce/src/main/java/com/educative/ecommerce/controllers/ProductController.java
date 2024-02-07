@@ -54,17 +54,14 @@ public class ProductController {
     }
 
     // update a product
-    @PostMapping("/update/{productID}")
-    public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Integer productID,
-                                                     @RequestBody @Valid ProductDto productDto) {
-        Optional<Product> optionalProduct = productService.readProduct(productID);
-        if (!optionalProduct.isPresent()) {
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
-        }
+    @PostMapping("/update/{productId}")
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productId") Integer productId, @RequestBody ProductDto productDto) throws Exception {
         Optional<Category> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
-        Category category = optionalCategory.get();
-        productService.updateProduct(productID, productDto, category);
-        return new ResponseEntity<>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
+        if (!optionalCategory.isPresent()) {
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category does not exists"), HttpStatus.BAD_REQUEST);
+        }
+        productService.updateProduct(productDto, productId);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "product has been updated"), HttpStatus.OK);
     }
 
     //TO DO: add delete function.

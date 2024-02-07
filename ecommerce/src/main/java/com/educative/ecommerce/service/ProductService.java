@@ -28,6 +28,17 @@ public class ProductService {
         return product;
     }
 
+    public ProductDto getProductDto(Product product) {
+        ProductDto productDto = new ProductDto();
+        productDto.setDescription(product.getDescription());
+        productDto.setImageURL(product.getImageURL());
+        productDto.setName(product.getName());
+        productDto.setCategoryId(product.getCategory().getId());
+        productDto.setPrice(product.getPrice());
+        productDto.setId(product.getId());
+        return productDto;
+    }
+
     public void addProduct(ProductDto productDto, Category category){
         Product product = createProduct(productDto,category);
         productRepository.save(product);
@@ -49,15 +60,19 @@ public class ProductService {
     }
 
     // update a product
-    public void updateProduct(Integer productID, ProductDto productDto, Category category) {
-        Product product = createProduct(productDto, category);
-        // set the id for updating
-        product.setId(productID);
-        // update
-        productRepository.save(product);
+    public void updateProduct(ProductDto productDto, Integer productId) throws Exception {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+
+        // throw an exception if product does not exist
+
+        if (!optionalProduct.isPresent()) {
+            throw new Exception("product not present");
+        }
+
     }
 
-    public Optional<Product> readProduct(Integer productId) {
+    public Optional<Product> readProduct(Integer productId){
+
         return productRepository.findById(productId);
 
     }
