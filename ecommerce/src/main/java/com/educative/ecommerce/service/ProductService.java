@@ -18,7 +18,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public static Product getProductFromDto(ProductDto productDto, Category category) {
+    public Product createProduct(ProductDto productDto, Category category) {
         Product product = new Product();
         product.setCategory(category);
         product.setDescription(productDto.getDescription());
@@ -28,11 +28,12 @@ public class ProductService {
         return product;
     }
 
-
-    public void addProduct(ProductDto productDto, Category category) {
-        Product product = getProductFromDto(productDto, category);
+    public void addProduct(ProductDto productDto, Category category){
+        Product product = createProduct(productDto,category);
         productRepository.save(product);
     }
+
+
 
     // list of all the products
     public List<ProductDto> listProducts() {
@@ -49,12 +50,26 @@ public class ProductService {
 
     // update a product
     public void updateProduct(Integer productID, ProductDto productDto, Category category) {
-        Product product = getProductFromDto(productDto, category);
+        Product product = createProduct(productDto, category);
         // set the id for updating
         product.setId(productID);
         // update
         productRepository.save(product);
     }
+
+    public Optional<Product> readProduct(Integer productId) {
+        return productRepository.findById(productId);
+
+    }
+
+    //To Do: add delete functionality
+    /*public void  deleteProduct(ProductDto productDto, Category category) {
+
+        Product product = createProduct(productDto, category);
+
+        ProductRepository.delete(product);
+
+    }*/
 
 
 
