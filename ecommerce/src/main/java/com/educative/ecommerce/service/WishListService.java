@@ -1,6 +1,7 @@
 package com.educative.ecommerce.service;
 
 import com.educative.ecommerce.dto.product.ProductDto;
+import com.educative.ecommerce.model.Product;
 import com.educative.ecommerce.model.User;
 import com.educative.ecommerce.model.WishList;
 import com.educative.ecommerce.repository.WishListRepository;
@@ -39,5 +40,31 @@ public class WishListService {
         }
 
         return productDtos;
+    }
+
+    public void deleteWishlist(User user){
+
+         List<WishList> wishLists = wishListRepository.findAllByUserOrderByCreatedDateDesc(user);
+
+        for (WishList wishList:wishLists) {
+
+            wishListRepository.delete(wishList);
+
+        }
+
+    }
+
+    public void deleteWishlistItem(User user, Product product){
+
+        List<WishList> wishLists = wishListRepository.findAllByUserOrderByCreatedDateDesc(user);
+
+
+
+        for (WishList wishList:wishLists) {
+
+            if(wishList.getProduct() == product) { wishListRepository.delete(wishList);}
+
+        }
+
     }
 }

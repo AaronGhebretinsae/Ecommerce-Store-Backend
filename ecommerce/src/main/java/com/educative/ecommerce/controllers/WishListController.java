@@ -70,6 +70,40 @@ public class WishListController {
 
     }
 
+   @DeleteMapping("/deleteWishlist")
+    public ResponseEntity<ApiResponse> deleteWishList(@RequestParam("token")String token ) {
+
+        // authenticate the token
+
+        authenticationService.authenticate(token);
+
+        // find the user
+
+        User user = authenticationService.getUser(token);
+
+        wishlistService.deleteWishlist(user);
+
+        return new ResponseEntity<>(new ApiResponse(true, "Deleted WishList"), HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/deletewishlistitem")
+    public ResponseEntity<ApiResponse> deleteWishListItem(@RequestBody Product product, @RequestParam("token")String token ) {
+
+        // authenticate the token
+
+        authenticationService.authenticate(token);
+
+        // find the user
+
+        User user = authenticationService.getUser(token);
+
+        wishlistService.deleteWishlistItem(user, product);
+
+        return new ResponseEntity<>(new ApiResponse(true, "Deleted WishList Item"), HttpStatus.OK);
+
+    }
+
 
 
 

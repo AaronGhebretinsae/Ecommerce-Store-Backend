@@ -58,6 +58,6 @@ public class CategoryController{
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category does not exist"), HttpStatus.CONFLICT);
         }
         categoryService.deleteCategory(category);
-        return new ResponseEntity<> (new ApiResponse(true, "Deleted the category"), HttpStatus.CREATED);
+        return new ResponseEntity<> (new ApiResponse(true, "Deleted the category"), HttpStatus.OK);
     }
 }
