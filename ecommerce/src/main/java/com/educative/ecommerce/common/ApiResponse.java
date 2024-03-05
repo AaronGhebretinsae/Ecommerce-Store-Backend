@@ -3,7 +3,6 @@ package com.educative.ecommerce.common;
 import java.time.LocalDateTime;
 
 public class ApiResponse {
-
     private final boolean success;
     private final String message;
 
@@ -14,7 +13,6 @@ public class ApiResponse {
 
     public boolean isSuccess() {
         return success;
-
     }
 
     public String getMessage() {
@@ -23,7 +21,5 @@ public class ApiResponse {
 
     public String getTimestamp() {
         return LocalDateTime.now().toString();
-
     }
-
 }
