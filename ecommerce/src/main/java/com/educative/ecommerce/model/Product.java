@@ -35,8 +35,8 @@ public class Product {
     private @NotNull String description;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     Category category;
 
     public Product(String name, String imageURL, double price, String desription, Category category){

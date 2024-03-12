@@ -14,7 +14,7 @@ public class WishList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -22,7 +22,7 @@ public class WishList {
     private Date createdDate;
 
     @ManyToOne
-    @JoinColumn(name = "products")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public WishList() {

@@ -43,11 +43,18 @@ public class WishListController {
 
         WishList wishList = new WishList(user, product);
 
-        wishlistService.createWishlist(wishList);
+        if (wishlistService.createWishlist(wishList, user) == 0) {
+            ApiResponse apiResponse = new ApiResponse(false,"Item already added to wishlist");
 
-        ApiResponse apiResponse = new ApiResponse(true,"Added to wishlist");
+            return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
+        }
+           else {
+            ApiResponse apiResponse = new ApiResponse(true, "Added to wishlist");
+
+            return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
+        }
         
-        return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
+
 
     }
 
