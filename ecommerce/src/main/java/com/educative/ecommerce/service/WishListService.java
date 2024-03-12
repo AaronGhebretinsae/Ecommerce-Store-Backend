@@ -21,9 +21,21 @@ public class WishListService {
     @Autowired
     ProductService productService;
 
-    public void createWishlist(WishList wishList) {
+    public Integer createWishlist(WishList wL, User user) {
 
-        wishListRepository.save(wishList);
+        List<WishList> wishLists = wishListRepository.findAllByUserOrderByCreatedDateDesc(user);
+
+
+
+        for (WishList wishList:wishLists) {
+
+            if(wishList.getProduct().getId() == wL.getProduct().getId()) { return 0;}
+
+        }
+
+        wishListRepository.save(wL);
+
+        return 1;
 
     }
 
@@ -62,7 +74,7 @@ public class WishListService {
 
         for (WishList wishList:wishLists) {
 
-            if(wishList.getProduct() == product) { wishListRepository.delete(wishList);}
+            if(wishList.getProduct().getId() == product.getId()) { wishListRepository.delete(wishList);}
 
         }
 
