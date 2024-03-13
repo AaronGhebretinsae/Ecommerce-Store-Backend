@@ -1,4 +1,4 @@
-package com.educative.ecommerce.dto.product;
+package com.educative.ecommerce.dto;
 
 public class ResponseDto {
 

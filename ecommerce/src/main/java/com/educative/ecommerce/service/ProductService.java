@@ -1,7 +1,8 @@
 package com.educative.ecommerce.service;
 
 
-import com.educative.ecommerce.dto.product.ProductDto;
+import com.educative.ecommerce.dto.ProductDto;
+import com.educative.ecommerce.exceptions.ProductNotExistException;
 import com.educative.ecommerce.model.Category;
 import com.educative.ecommerce.model.Product;
 import com.educative.ecommerce.repository.ProductRepository;
@@ -74,6 +75,16 @@ public class ProductService {
     public Optional<Product> readProduct(Integer productId){
 
         return productRepository.findById(productId);
+
+    }
+
+    public Product findById(Integer productId) throws ProductNotExistException {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotExistException("product id is invalid");
+        }
+
+        return optionalProduct.get();
 
     }
 

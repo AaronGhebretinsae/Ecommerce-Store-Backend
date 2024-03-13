@@ -1,4 +1,4 @@
-package com.educative.ecommerce.dto.product.User;
+package com.educative.ecommerce.dto.User;
 
 public class SignInDto {
 

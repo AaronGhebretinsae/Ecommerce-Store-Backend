@@ -29,6 +29,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    // TO DO: Implement some sort of inventory system
+
     private @NotNull String name;
     private @NotNull String imageURL;
     private @NotNull double price;
