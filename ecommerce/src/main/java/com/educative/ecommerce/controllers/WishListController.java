@@ -1,13 +1,11 @@
 package com.educative.ecommerce.controllers;
 
 import com.educative.ecommerce.common.ApiResponse;
-import com.educative.ecommerce.dto.product.ProductDto;
+import com.educative.ecommerce.dto.ProductDto;
 import com.educative.ecommerce.model.Product;
 import com.educative.ecommerce.model.User;
 import com.educative.ecommerce.model.WishList;
 import com.educative.ecommerce.service.AuthenticationService;
-import com.educative.ecommerce.service.ProductService;
-import com.educative.ecommerce.service.UserService;
 import com.educative.ecommerce.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

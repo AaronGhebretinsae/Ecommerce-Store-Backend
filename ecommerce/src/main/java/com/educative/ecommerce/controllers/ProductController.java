@@ -2,10 +2,8 @@ package com.educative.ecommerce.controllers;
 
 
 import com.educative.ecommerce.common.ApiResponse;
-import com.educative.ecommerce.dto.product.ProductDto;
+import com.educative.ecommerce.dto.ProductDto;
 import com.educative.ecommerce.model.Category;
-import com.educative.ecommerce.model.Product;
-import com.educative.ecommerce.repository.ProductRepository;
 import com.educative.ecommerce.service.CategoryService;
 import com.educative.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

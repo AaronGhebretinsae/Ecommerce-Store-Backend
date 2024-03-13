@@ -1,9 +1,9 @@
 package com.educative.ecommerce.controllers;
 
-import com.educative.ecommerce.dto.product.ResponseDto;
-import com.educative.ecommerce.dto.product.User.SignInDto;
-import com.educative.ecommerce.dto.product.User.SignInResponseDto;
-import com.educative.ecommerce.dto.product.User.SignupDto;
+import com.educative.ecommerce.dto.ResponseDto;
+import com.educative.ecommerce.dto.User.SignInDto;
+import com.educative.ecommerce.dto.User.SignInResponseDto;
+import com.educative.ecommerce.dto.User.SignupDto;
 import com.educative.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
